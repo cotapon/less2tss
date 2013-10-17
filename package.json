@@ -1,12 +1,12 @@
 {
-  "name": "ltss",
-  "version": "0.0.5",
-  "description": "less tss",
-  "main": "ltss/ltss.js",
+  "name": "less2tss",
+  "version": "0.0.1",
+  "description": "less to tss converter",
+  "main": "less2tss/less2tss.js",
   "scripts": {
     "test": "mocha"
   },
-  "repository": "https://github.com/dbankier/ltss",
+  "repository": "https://github.com/dbankier/less2tss",
   "keywords": [
     "appcelerator",
     "titanium",
@@ -14,7 +14,11 @@
     "tss",
     "less"
   ],
-  "bin":"bin/ltss",
+  "bin": "bin/less2tss",
   "author": "David Bankier",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "less": "~1.4.2",
+    "csstss": "~0.1.0"
+  }
 }

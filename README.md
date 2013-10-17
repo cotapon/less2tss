@@ -1,116 +1,9 @@
-# Less TSS
+# less2tss
 
-An Alloy tss pre-processor inspired by less
+A simply less to tss converter.
 
-Note that it isn't less so less features won't necessarily work
-
-# Syntax
-
-## Variables
-
-```
-@color: '#4D926F';
-@color2: 'rgba(255,0,0,0.5)';
-
-"#header": {
-  color: @color
-}
-"Label": {
-  color: @color
-}
-"#header2": {
-  color: @color2;
-}
-```
-
-becomes
-
-```
-"#header": {
-  color: '#4D926F'
-}
-"Label": {
-  color: '#4D926F'
-}
-"#header2": {
-  color: 'rgba(255,0,0,0.5)';
-}
-```
-
-## Mixins
-
-```
-.padding (@pad: '5dp') {
-  top: @pad,
-  bottom: @pad,
-  left: @pad,
-  right: @pad
-}
-
-"#header" : {
-  .padding()
-}
-"#footer" : {
-  .padding('10px')
-}
-```
-
-becomes
-
-```
-"#header" : {
-  top: '5dp',
-  bottom: '5dp',
-  left: '5dp',
-  right: '5dp'
-}
-"#footer" : {
-  top: '10px',
-  bottom: '10px',
-  left: '10px',
-  right: '10px'
-}
-```
-## Includes
-
-This
-
-```
-@include("./mixin");
-@color: '#4D926F';
-
-"#header": {
-  color: @color
-}
-"Label": {
-  color: @color
-}
-```
-
-and the file **mixin.ltss** (in the mixin section above) becomes this:
-
-```
-"#header" : {
-  top: '5dp',
-  bottom: '5dp',
-  left: '5dp',
-  right: '5dp'
-}
-"#footer" : {
-  top: '10px',
-  bottom: '10px',
-  left: '10px',
-  right: '10px'
-}
-
-
-"#header": {
-  color: '#4D926F'
-}
-"Label": {
-  color: '#4D926F'
-}
-```
+Uses [less](http://lesscss.org/) and [css2tss](https://github.com/p/csstss)
+Alternative to (and forked from) [ltss](https://github.com/dbankier/ltss)
 
 ## CLI Usage
 
@@ -123,13 +16,13 @@ Install
 then
 
 ```
-ltss [filename.ltss]
+less2tss [filename.less]
 ```
 
 converted file will be return to stdout
 
 ```
-ltss [filename.ltss] filename.tss
+less2tss [filename.less] filename.tss
 ```
 
 converted file will be written to the output file provided
@@ -140,65 +33,3 @@ converted file will be written to the output file provided
 the following commands are available: `compileString(string, callback)`, `compileFile(filename, callback)`,
 `writeFile(source, target, callback)`
 
-## Extended Example
-
-```
-@variable1: 1;
-@test2  :  3
-
-.mixin1 (@arg1, @arg2) {
-  length: @arg1,
-  bredth: @arg2
-}
-
-.mixin2(@color: 'red') {
-  backgroundColor: @color
-}
-
-
-".class" : {
-  height: @variable1,
-  text: 'hello',
-  width: @test2,
-  .mixin2(),
-  .mixin1(20, 30)
-}
-
-".class2" : {
-  .mixin2("blue")
-}
-```
-
-becomes
-
-```
-".class" : {
-  height: 1,
-  text: 'hello',
-  width: 3,
-  backgroundColor: 'red',
-  length: 20,
-  bredth:  30
-}
-
-".class2" : {
-  backgroundColor: "blue"
-}
-```
-
-## Contributors
-
-```
- project  : ltss
- repo age : 3 months
- active   : 9 days
- commits  : 14
- files    : 16
- authors  :
-     9  David Bankier           64.3%
-     5  Ashton Williams         35.7%
-```
-
-## Grunt Plugin
-
-See this [repo](https://github.com/dbankier/grunt-ltss).

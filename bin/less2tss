@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+var less2tss = require("../less2tss/less2tss.js");
+if (process.argv.length === 3) {
+  less2tss.compileFile(process.argv[2] ,function(err,data) {
+    console.log(data);
+  });
+} else if (process.argv.length === 4) {
+  less2tss.writeFile(process.argv[2], process.argv[3],function(err,data) {
+    console.log(err||data);
+  });
+} else {
+  console.log("USAGE: less2tss [style.less] (style.tss)");
+}
