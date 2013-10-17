@@ -1,6 +1,6 @@
 # less2tss
 
-A simply less to tss converter.
+A simple less to tss converter.
 
 Uses [less](http://lesscss.org/) and [css2tss](https://github.com/p/csstss)
 Alternative to (and forked from) [ltss](https://github.com/dbankier/ltss)
